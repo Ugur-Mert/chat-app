@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -11,18 +11,27 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../firebase";
 
 const theme = createTheme();
 
 export default function HomePage() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = await login(email, password);
+
+    if (user) {
+      console.log(user);
+      navigate("welcome", {
+        replace: true,
+      });
+    }
   };
 
   return (
@@ -62,6 +71,8 @@ export default function HomePage() {
               autoComplete="email"
               autoFocus
               variant="standard"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -73,6 +84,8 @@ export default function HomePage() {
               id="password"
               autoComplete="current-password"
               variant="standard"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <Button
@@ -80,6 +93,7 @@ export default function HomePage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!email || !password}
             >
               Giriş Yap
             </Button>

@@ -14,8 +14,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { register } from "../../firebase";
 
-import toast, { Toaster } from "react-hot-toast";
-
 const theme = createTheme();
 
 export const Register = () => {
@@ -24,14 +22,9 @@ export const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-
-      const user = await register(email, password);
-      console.log(user);
-    } catch (error) {
-      toast.error(error.message);
-    }
+    e.preventDefault();
+    const user = await register(email, password);
+    console.log(user);
   };
 
   return (
