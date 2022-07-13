@@ -23,8 +23,7 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await register(email, password);
-    console.log(user);
+    await register(email, password);
   };
 
   return (
@@ -106,7 +105,7 @@ export const Register = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={password !== confirmPassword || !email}
+              disabled={password !== confirmPassword || !email || !password}
             >
               Kayıt Ol
             </Button>
