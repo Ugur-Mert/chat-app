@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -12,17 +12,26 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Link } from "react-router-dom";
+import { register } from "../../firebase";
+
+import toast, { Toaster } from "react-hot-toast";
 
 const theme = createTheme();
 
 export const Register = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const user = await register(email, password);
+      console.log(user);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -53,29 +62,6 @@ export const Register = () => {
             sx={{ mt: 1 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  variant="standard"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  variant="standard"
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   margin="normal"
@@ -87,6 +73,8 @@ export const Register = () => {
                   autoComplete="email"
                   autoFocus
                   variant="standard"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,6 +88,8 @@ export const Register = () => {
                   id="password"
                   autoComplete="current-password"
                   variant="standard"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,8 +101,10 @@ export const Register = () => {
                   label="Confirm Password"
                   type="password"
                   id="confirmPassword"
-                  autoComplete="current-password"
+                  autoComplete="confirm-password"
                   variant="standard"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -121,6 +113,7 @@ export const Register = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={password !== confirmPassword || !email}
             >
               Kayıt Ol
             </Button>
