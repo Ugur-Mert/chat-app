@@ -62,9 +62,18 @@ export const logout = async () => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("USER", user);
+    console.log(user);
+    store.dispatch(
+      loginHandle({
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        uid: user.uid,
+        emailVerified: user.emailVerified,
+      })
+    );
   } else {
-    console.log("kullanıcı oturumu kapattı");
+    store.dispatch(logoutHandle());
   }
 });
 
