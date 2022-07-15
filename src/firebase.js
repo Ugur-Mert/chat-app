@@ -7,6 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
+  sendEmailVerification,
 } from "firebase/auth";
 
 import toast from "react-hot-toast";
@@ -66,6 +67,15 @@ export const update = async (data) => {
     await updateProfile(auth.currentUser, data);
     toast.success("Profile updated");
     return true;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
+export const verification = async () => {
+  try {
+    await sendEmailVerification(auth.currentUser);
+    toast.success("Doğrulama epostası gönderildi.");
   } catch (error) {
     toast.error(error.message);
   }

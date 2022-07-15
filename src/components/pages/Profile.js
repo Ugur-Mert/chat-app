@@ -3,9 +3,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Container, Box, Avatar, Grid, Button } from "@mui/material";
+import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
+
+import { verification } from "../../firebase";
 
 export const Profile = () => {
   const { user } = useSelector((state) => state.auth);
+
+  const handleVerify = async () => {
+    await verification();
+    console.log(user);
+  };
 
   return (
     <Container maxWidth="sm">
@@ -49,33 +57,21 @@ export const Profile = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button variant="contained" color="success">
-                Verify your Email
-              </Button>
+              {user.emailVerified ? (
+                <p style={{ color: "green" }}>
+                  <VerifiedOutlinedIcon />
+                </p>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={handleVerify}
+                >
+                  Verify your Email
+                </Button>
+              )}
             </Grid>
           </Grid>
-
-          {/* <Grid
-            xs={6}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Grid item xs={6} mt={3} container direction="row">
-              <p>Email: </p>
-            </Grid>
-            <Grid item xs={6} container direction="row">
-              <p>{user.email}</p>
-            </Grid>
-          </Grid>
-          <Grid xs={6} direction="column">
-            <Grid item xs={6} mt={3} container direction="row">
-              <p>Email: </p>
-            </Grid>
-            <Grid item xs={6} container direction="row">
-              <p>{user.email}</p>
-            </Grid>
-          </Grid> */}
         </Grid>
       </Box>
     </Container>
