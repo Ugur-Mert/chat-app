@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 
 import toast from "react-hot-toast";
@@ -24,7 +25,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+export const auth = getAuth();
 
 export const register = async (email, password) => {
   try {
@@ -60,6 +61,16 @@ export const logout = async () => {
   }
 };
 
+export const update = async (data) => {
+  try {
+    await updateProfile(auth.currentUser, data);
+    toast.success("Profile updated");
+    return true;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log(user);
@@ -70,7 +81,7 @@ onAuthStateChanged(auth, (user) => {
         email: user.email,
         photoURL: user.photoURL,
         uid: user.uid,
-        phoneNumber: user.phoneNumber,
+
         emailVerified: user.emailVerified,
       })
     );

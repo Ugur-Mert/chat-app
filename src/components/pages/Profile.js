@@ -9,7 +9,19 @@ export const Profile = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box mt={2} p={5} sx={{ bgcolor: "text.secondary", flexGrow: 1 }}>
+      <Box
+        mt={2}
+        p={5}
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          border: 1,
+          padding: 3,
+          borderRadius: 1,
+        }}
+      >
         <Grid container rowSpacing={3}>
           <Grid
             item
@@ -22,13 +34,7 @@ export const Profile = () => {
             <Avatar src={user.photoURL} alt="avatar" />
           </Grid>
 
-          <Grid
-            container
-            rowSpacing={2}
-            mt={2}
-            textAlign="center"
-            style={{ color: "white" }}
-          >
+          <Grid container rowSpacing={2} mt={2} textAlign="center">
             <Grid item xs={6}>
               <p>Email: </p>
             </Grid>
@@ -41,12 +47,7 @@ export const Profile = () => {
             <Grid item xs={6}>
               <p>{user.displayName}</p>
             </Grid>
-            <Grid item xs={6}>
-              <p>Phone Number:</p>
-            </Grid>
-            <Grid item xs={6}>
-              <p>{user.phoneNumber}</p>
-            </Grid>
+
             <Grid item xs={12}>
               <Button variant="contained" color="success">
                 Verify your Email
@@ -76,7 +77,6 @@ export const Profile = () => {
             </Grid>
           </Grid> */}
         </Grid>
-        <p>{user.displayName}</p>
       </Box>
     </Container>
   );

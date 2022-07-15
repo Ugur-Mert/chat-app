@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { Register } from "./components/pages/Register";
 import { Welcome } from "./components/pages/Welcome";
 import { Profile } from "./components/pages/Profile";
+import { UpdateProfile } from "./components/pages/UpdateProfile";
 
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import HomePage from "./components/pages/HomePage";
@@ -21,6 +22,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="welcome" element={<Welcome />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="account" element={<UpdateProfile />} />
       </Routes>
     </div>
   );
