@@ -4,12 +4,12 @@ import { Routes, Route } from "react-router-dom";
 
 import { Toaster } from "react-hot-toast";
 
-import HomePage from "./components/pages/HomePage";
 import { Register } from "./components/pages/Register";
 import { Welcome } from "./components/pages/Welcome";
 import { Profile } from "./components/pages/Profile";
 
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import HomePage from "./components/pages/HomePage";
 
 function App() {
   return (
