@@ -19,6 +19,8 @@ import { logout } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account"];
 
@@ -49,6 +51,8 @@ const ResponsiveAppBar = () => {
       replace: true,
     });
   };
+
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <AppBar position="static" sx={{ bgcolor: "text.secondary" }}>
@@ -139,53 +143,56 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to={`/${setting}`}
-                    >
-                      {setting}
-                    </Link>
-                  </Typography>
-                </MenuItem>
-              ))}
-              <Box textAlign="center">
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color="error"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </Box>
-            </Menu>
-          </Box>
+          {user ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar src={user.photoURL} alt="avatar" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/${setting}`}
+                      >
+                        {setting}
+                      </Link>
+                    </Typography>
+                  </MenuItem>
+                ))}
+                <Box textAlign="center">
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color="error"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </Box>
+              </Menu>
+            </Box>
+          ) : (
+            ""
+          )}
         </Toolbar>
       </Container>
     </AppBar>

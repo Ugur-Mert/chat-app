@@ -63,12 +63,14 @@ export const logout = async () => {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log(user);
+
     store.dispatch(
       loginHandle({
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
         uid: user.uid,
+        phoneNumber: user.phoneNumber,
         emailVerified: user.emailVerified,
       })
     );
