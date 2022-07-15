@@ -2,10 +2,13 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
+import { Toaster } from "react-hot-toast";
+
 import HomePage from "./components/pages/HomePage";
 import { Register } from "./components/pages/Register";
-import { Toaster } from "react-hot-toast";
 import { Welcome } from "./components/pages/Welcome";
+import { Profile } from "./components/pages/Profile";
+
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
 
 function App() {
@@ -17,6 +20,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="register" element={<Register />} />
         <Route path="welcome" element={<Welcome />} />
+        <Route path="profile" element={<Profile />} />
       </Routes>
     </div>
   );
