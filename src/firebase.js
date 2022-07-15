@@ -8,6 +8,8 @@ import {
   onAuthStateChanged,
   updateProfile,
   sendEmailVerification,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 
 import toast from "react-hot-toast";
@@ -28,6 +30,8 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 
+const provider = new GoogleAuthProvider();
+
 export const register = async (email, password) => {
   try {
     const { user } = await createUserWithEmailAndPassword(
@@ -36,6 +40,16 @@ export const register = async (email, password) => {
       password
     );
 
+    return user;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
+export const googleLogin = async () => {
+  auth.useDeviceLanguage();
+  try {
+    const { user } = await signInWithPopup(auth, provider);
     return user;
   } catch (error) {
     toast.error(error.message);

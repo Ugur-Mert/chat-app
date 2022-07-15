@@ -10,9 +10,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import GoogleIcon from "@mui/icons-material/Google";
 
 import { Link } from "react-router-dom";
-import { login } from "../../firebase";
+import { googleLogin, login } from "../../firebase";
 
 const theme = createTheme();
 
@@ -88,6 +89,17 @@ export default function Login() {
               disabled={!email || !password}
             >
               Giriş Yap
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              color="success"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={googleLogin}
+            >
+              <p style={{ display: "flex" }}>
+                Google ile giriş yap <GoogleIcon />
+              </p>
             </Button>
             <Grid container>
               <Grid item xs>
