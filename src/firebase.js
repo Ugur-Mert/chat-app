@@ -83,8 +83,6 @@ export const verification = async () => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log(user);
-
     store.dispatch(
       loginHandle({
         displayName: user.displayName,

@@ -12,7 +12,6 @@ export const Profile = () => {
 
   const handleVerify = async () => {
     await verification();
-    console.log(user);
   };
 
   return (
@@ -49,6 +48,7 @@ export const Profile = () => {
             <Grid item xs={6}>
               <p>{user.email}</p>
             </Grid>
+
             <Grid item xs={6}>
               <p>Name:</p>
             </Grid>

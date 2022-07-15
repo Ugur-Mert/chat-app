@@ -167,16 +167,15 @@ const ResponsiveAppBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to={`/${setting}`}
-                      >
-                        {setting}
-                      </Link>
-                    </Typography>
-                  </MenuItem>
+                  <Link
+                    key={setting}
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/${setting}`}
+                  >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  </Link>
                 ))}
                 <Box textAlign="center">
                   <Button
