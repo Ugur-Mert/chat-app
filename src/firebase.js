@@ -12,7 +12,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 import toast from "react-hot-toast";
 
@@ -115,5 +115,14 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch(logoutHandle());
   }
 });
+
+export const sendMessage = async (data) => {
+  try {
+    const messages = await addDoc(collection(db, "messages"), data);
+    return messages.id;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
 
 export default app;
