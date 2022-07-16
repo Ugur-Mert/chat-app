@@ -97,9 +97,7 @@ export default function Login() {
               sx={{ mt: 3, mb: 2 }}
               onClick={googleLogin}
             >
-              <p style={{ display: "flex" }}>
-                Google ile giriş yap <GoogleIcon />
-              </p>
+              Google ile giriş yap <GoogleIcon />
             </Button>
             <Grid container>
               <Grid item xs>

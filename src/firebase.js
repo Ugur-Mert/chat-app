@@ -12,6 +12,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+import { getFirestore } from "firebase/firestore";
+
 import toast from "react-hot-toast";
 
 import store from "./store";
@@ -27,6 +29,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
 
 export const auth = getAuth();
 
