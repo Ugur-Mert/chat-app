@@ -5,11 +5,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import SendMessage from "../sendMessage";
 import Grid from "@mui/material/Grid";
 
-import Tooltip from "@mui/material/Tooltip";
-
-import { Paper } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export default function ChatPage() {
+  const { messages } = useSelector((state) => state.messages);
+  console.log(messages);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -21,12 +21,13 @@ export default function ChatPage() {
             height: "60vh",
           }}
         >
-          <Grid container justifyContent="center">
-            <Grid item>aasdasdasd</Grid>
-          </Grid>
+          {messages.map((message) => (
+            <p key={message.id}>{message.message}</p>
+          ))}
         </Box>
-
-        <SendMessage />
+        <Grid container justifyContent="center">
+          <SendMessage />
+        </Grid>
       </Container>
     </React.Fragment>
   );

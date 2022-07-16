@@ -12,12 +12,20 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  where,
+  query,
+} from "firebase/firestore";
 
 import toast from "react-hot-toast";
 
 import store from "./store";
 import { login as loginHandle, logout as logoutHandle } from "./store/auth";
+import { setMessages } from "./store/messages";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -111,6 +119,22 @@ onAuthStateChanged(auth, (user) => {
         emailVerified: user.emailVerified,
       })
     );
+
+    // Listen to multiple documents in a collection
+
+    onSnapshot(query(collection(db, "messages")), (doc) => {
+      store.dispatch(
+        setMessages(
+          doc.docs.reduce(
+            (messages, message) => [
+              ...messages,
+              { ...message.data(), id: message.id },
+            ],
+            []
+          )
+        )
+      );
+    });
   } else {
     store.dispatch(logoutHandle());
   }
