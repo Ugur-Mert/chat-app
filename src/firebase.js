@@ -16,9 +16,9 @@ import {
   getFirestore,
   collection,
   addDoc,
-  onSnapshot,  
+  onSnapshot,
   query,
-  orderBy,  
+  orderBy,
 } from "firebase/firestore";
 
 import toast from "react-hot-toast";
@@ -133,7 +133,6 @@ onAuthStateChanged(auth, (user) => {
                 {
                   ...message.data(),
                   id: message.id,
-                  createdAt: message.createdAt,
                 },
               ],
               []
@@ -150,6 +149,7 @@ onAuthStateChanged(auth, (user) => {
 export const sendMessage = async (data) => {
   try {
     const messages = await addDoc(collection(db, "messages"), data);
+
     return messages.id;
   } catch (error) {
     toast.error(error.message);

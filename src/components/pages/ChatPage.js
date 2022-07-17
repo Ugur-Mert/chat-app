@@ -27,7 +27,7 @@ export default function ChatPage() {
           {messages.map((message) => (
             <Grid key={message.id} container justifyContent="center">
               <SnackbarContent
-                message={message.message}
+                message={`${message.message} , ${message.createdAt}`} //message is snackbar command.{message.message} is our message
                 sx={{ marginTop: 1, marginBottom: 1 }}
               />
             </Grid>
