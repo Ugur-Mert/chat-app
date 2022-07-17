@@ -22,7 +22,7 @@ export default function SendMessage() {
     await sendMessage({
       message,
       uid: user.uid,
-      createdAt: message.createdAt,
+      createdAt: serverTimestamp(),
     });
     setMessage("");
   };

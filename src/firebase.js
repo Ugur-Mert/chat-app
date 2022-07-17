@@ -149,7 +149,6 @@ onAuthStateChanged(auth, (user) => {
 export const sendMessage = async (data) => {
   try {
     const messages = await addDoc(collection(db, "messages"), data);
-
     return messages.id;
   } catch (error) {
     toast.error(error.message);
