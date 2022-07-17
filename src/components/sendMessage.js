@@ -10,6 +10,7 @@ import { sendMessage } from "../firebase";
 
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
+import { serverTimestamp } from "firebase/firestore";
 
 export default function SendMessage() {
   const { user } = useSelector((state) => state.auth);
@@ -21,6 +22,7 @@ export default function SendMessage() {
     await sendMessage({
       message,
       uid: user.uid,
+      createdAt: serverTimestamp(),
     });
     setMessage("");
   };

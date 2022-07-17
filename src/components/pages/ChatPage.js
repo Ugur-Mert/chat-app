@@ -4,12 +4,16 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import SendMessage from "../sendMessage";
 import Grid from "@mui/material/Grid";
+import SnackbarContent from "@mui/material/SnackbarContent";
 
 import { useSelector } from "react-redux";
 
 export default function ChatPage() {
   const { messages } = useSelector((state) => state.messages);
+  const { user } = useSelector((state) => state.auth);
   console.log(messages);
+  console.log(user);
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -18,11 +22,15 @@ export default function ChatPage() {
           sx={{
             marginTop: 5,
             bgcolor: "#cfe8fc",
-            height: "60vh",
           }}
         >
           {messages.map((message) => (
-            <p key={message.id}>{message.message}</p>
+            <Grid key={message.id} container justifyContent="center">
+              <SnackbarContent
+                message={message.message}
+                sx={{ marginTop: 1, marginBottom: 1 }}
+              />
+            </Grid>
           ))}
         </Box>
         <Grid container justifyContent="center">

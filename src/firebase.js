@@ -16,9 +16,9 @@ import {
   getFirestore,
   collection,
   addDoc,
-  onSnapshot,
-  where,
+  onSnapshot,  
   query,
+  orderBy,  
 } from "firebase/firestore";
 
 import toast from "react-hot-toast";
@@ -41,6 +41,8 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const auth = getAuth();
+
+console.log(auth.currentUser);
 
 const provider = new GoogleAuthProvider();
 
@@ -72,7 +74,6 @@ export const login = async (email, password) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     toast.success("Welcome!");
-
     return user;
   } catch (error) {
     toast.error(error.message);
@@ -115,26 +116,32 @@ onAuthStateChanged(auth, (user) => {
         email: user.email,
         photoURL: user.photoURL,
         uid: user.uid,
-
         emailVerified: user.emailVerified,
       })
     );
 
     // Listen to multiple documents in a collection
 
-    onSnapshot(query(collection(db, "messages")), (doc) => {
-      store.dispatch(
-        setMessages(
-          doc.docs.reduce(
-            (messages, message) => [
-              ...messages,
-              { ...message.data(), id: message.id },
-            ],
-            []
+    onSnapshot(
+      query(collection(db, "messages"), orderBy("createdAt")),
+      (doc) => {
+        store.dispatch(
+          setMessages(
+            doc.docs.reduce(
+              (messages, message) => [
+                ...messages,
+                {
+                  ...message.data(),
+                  id: message.id,
+                  createdAt: message.createdAt,
+                },
+              ],
+              []
+            )
           )
-        )
-      );
-    });
+        );
+      }
+    );
   } else {
     store.dispatch(logoutHandle());
   }
