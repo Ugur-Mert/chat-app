@@ -24,6 +24,9 @@ export default function SendMessage() {
       message,
       uid: user.uid,
       createdAt: serverTimestamp(),
+      hours: new Date().getHours(),
+      minutes: new Date().getMinutes(),
+      avatar: user.photoURL,
     });
     setMessage("");
   };

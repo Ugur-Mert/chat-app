@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import SnackbarContent from "@mui/material/SnackbarContent";
 
 import { useSelector } from "react-redux";
+import { Avatar } from "@mui/material";
 
 export default function ChatPage() {
   const { messages } = useSelector((state) => state.messages);
@@ -26,8 +27,9 @@ export default function ChatPage() {
         >
           {messages.map((message) => (
             <Grid key={message.id} container justifyContent="center">
+              <Avatar src={message.avatar} />
               <SnackbarContent
-                message={`${message.message} , ${message.createdAt}`} //message is snackbar command.{message.message} is our message
+                message={` ${message.message}, ${message.hours}:${message.minutes} `} //message is snackbar command.{message.message} is our message
                 sx={{ marginTop: 1, marginBottom: 1 }}
               />
             </Grid>

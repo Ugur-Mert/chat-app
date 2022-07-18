@@ -134,6 +134,7 @@ onAuthStateChanged(auth, (user) => {
                 {
                   ...message.data(),
                   id: message.id,
+                  createdAt: message.createdAt,
                 },
               ],
               []
