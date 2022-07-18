@@ -14,6 +14,7 @@ import { serverTimestamp } from "firebase/firestore";
 
 export default function SendMessage() {
   const { user } = useSelector((state) => state.auth);
+
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
