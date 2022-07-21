@@ -27,6 +27,7 @@ export default function SendMessage() {
       hours: new Date().getHours(),
       minutes: new Date().getMinutes(),
       avatar: user.photoURL,
+      name: user.displayName,
     });
     setMessage("");
   };

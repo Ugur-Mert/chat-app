@@ -1,0 +1,17 @@
+.rce-mbox {
+  max-width: 480px;
+  background-color: #816797 !important;
+}
+
+.rce-avatar-container .rce-avatar {
+  border-radius: 100%;
+}
+
+.rce-mbox-text {
+  color: #1b2430;
+}
+
+.rce-mbox-right-notch,
+.rce-mbox-left-notch {
+  fill: #816797 !important;
+}
