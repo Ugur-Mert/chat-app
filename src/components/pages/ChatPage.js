@@ -29,6 +29,11 @@ export default function ChatPage() {
           sx={{
             marginTop: 5,
             bgcolor: "#51557E",
+            borderRadius: "8px",
+            height: "60vh",
+            padding: 3,
+            overflow: "hidden",
+            overflowY: "scroll",
           }}
         >
           {messages.map((message) => (
