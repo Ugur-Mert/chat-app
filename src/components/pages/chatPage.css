@@ -16,6 +16,11 @@
   fill: #816797 !important;
 }
 
+.rce-mbox-title {
+  text-decoration: none !important;
+  cursor: default !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

@@ -14,7 +14,7 @@ import HomePage from "./components/pages/HomePage";
 
 function App() {
   return (
-    <div>
+    <div className="main">
       <ResponsiveAppBar />
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>

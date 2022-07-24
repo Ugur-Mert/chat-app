@@ -29,7 +29,8 @@ export default function ChatPage() {
           sx={{
             marginTop: 5,
             bgcolor: "#51557E",
-            borderRadius: "8px",
+            borderTopRightRadius: "8px",
+            borderTopLeftRadius: "8px",
             height: "60vh",
             padding: 3,
             overflow: "hidden",
@@ -59,9 +60,19 @@ export default function ChatPage() {
             />
           ))}
         </Box>
-        <Grid container justifyContent="center">
-          <SendMessage />
-        </Grid>
+        <Box
+          sx={{
+            bgcolor: "#51557E",
+
+            boxShadow: " 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            borderBottomRightRadius: "8px",
+            borderBottomLeftRadius: "8px",
+          }}
+        >
+          <Grid container justifyContent="center">
+            <SendMessage />
+          </Grid>
+        </Box>
       </Container>
     </React.Fragment>
   );

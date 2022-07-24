@@ -21,7 +21,6 @@ import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account"];
 
 const ResponsiveAppBar = () => {
@@ -55,7 +54,7 @@ const ResponsiveAppBar = () => {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "text.secondary" }}>
+    <AppBar position="static" sx={{ bgcolor: "#4C3575" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -105,13 +104,7 @@ const ResponsiveAppBar = () => {
               sx={{
                 display: { xs: "block", md: "none" },
               }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            ></Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -131,17 +124,7 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
           {user ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
