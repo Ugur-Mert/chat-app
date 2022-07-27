@@ -5,6 +5,12 @@ html {
   background-color: #371b58;
 }
 
-.main {
+.dark {
   background-color: #371b58;
+  color: antiquewhite;
+}
+
+.light {
+  background-color: antiquewhite;
+  color: #371b58;
 }

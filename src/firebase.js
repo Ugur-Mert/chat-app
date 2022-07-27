@@ -19,7 +19,7 @@ import {
   onSnapshot,
   query,
   orderBy,
-  serverTimestamp,
+  limit,
 } from "firebase/firestore";
 
 import toast from "react-hot-toast";
@@ -43,7 +43,7 @@ export const db = getFirestore(app);
 
 export const auth = getAuth();
 
-console.log(auth.currentUser);
+console.log(auth);
 
 const provider = new GoogleAuthProvider();
 

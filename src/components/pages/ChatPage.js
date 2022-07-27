@@ -18,8 +18,8 @@ export default function ChatPage() {
   const { messages } = useSelector((state) => state.messages);
   const { user } = useSelector((state) => state.auth);
 
-  console.log(messages);
-  console.log(user);
+  // console.log(messages);
+  // console.log(user);
 
   return (
     <React.Fragment>

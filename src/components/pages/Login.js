@@ -14,6 +14,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 
 import { Link } from "react-router-dom";
 import { googleLogin, login } from "../../firebase";
+import { useSelector } from "react-redux";
 
 const theme = createTheme();
 
@@ -26,12 +27,14 @@ export default function Login() {
 
     await login(email, password);
   };
+  const { darkMode } = useSelector((state) => state.mode);
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          className={darkMode ? "dark" : "light"}
           sx={{
             marginTop: 8,
             display: "flex",
@@ -42,7 +45,6 @@ export default function Login() {
             borderRadius: 1,
             boxShadow:
               "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-            backgroundColor: "#7858A6",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "dark" }}>

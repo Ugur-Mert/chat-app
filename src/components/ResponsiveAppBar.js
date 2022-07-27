@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./ResponsiveAppBar.css";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,13 +15,20 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import Badge from "@mui/material/Badge";
+import MailIcon from "@mui/icons-material/Mail";
+import NightsStayIcon from "@mui/icons-material/NightsStay";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 import { logout } from "../firebase";
 
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Switch } from "@mui/material";
+
+import { setDarkMode } from "../store/mode";
 
 const settings = ["Profile", "Account"];
 
@@ -52,9 +61,12 @@ const ResponsiveAppBar = () => {
   };
 
   const { user } = useSelector((state) => state.auth);
+  const { darkMode } = useSelector((state) => state.mode);
+
+  const dispatch = useDispatch();
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#4C3575" }}>
+    <AppBar position="static" className={darkMode ? "dark" : "light"}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -124,7 +136,23 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              marginRight: "19px",
+              alignItems: "center",
+            }}
+          >
+            <Badge color="secondary" badgeContent={30}>
+              <MailIcon />
+            </Badge>
+            <Switch defaultChecked onClick={() => dispatch(setDarkMode())} />
+            {darkMode ? <NightsStayIcon /> : <LightModeIcon />}
+          </Box>
+
           {user ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

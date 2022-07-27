@@ -11,10 +11,13 @@ import { UpdateProfile } from "./components/pages/UpdateProfile";
 
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import HomePage from "./components/pages/HomePage";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { darkMode } = useSelector((state) => state.mode);
+
   return (
-    <div className="main">
+    <div className={darkMode ? "dark" : "light"}>
       <ResponsiveAppBar />
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
