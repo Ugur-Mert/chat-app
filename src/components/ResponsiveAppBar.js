@@ -15,8 +15,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
+
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
@@ -69,7 +68,13 @@ const ResponsiveAppBar = () => {
     <AppBar position="static" className={darkMode ? "dark" : "light"}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AdbIcon
+            sx={{
+              color: darkMode ? "white" : "black",
+              display: { xs: "none", md: "flex" },
+              mr: 1,
+            }}
+          />
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <Typography
               variant="h6"
@@ -80,7 +85,7 @@ const ResponsiveAppBar = () => {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: darkMode ? "white" : "black",
                 textDecoration: "none",
               }}
             >
@@ -146,11 +151,12 @@ const ResponsiveAppBar = () => {
               alignItems: "center",
             }}
           >
-            <Badge color="secondary" badgeContent={30}>
-              <MailIcon />
-            </Badge>
             <Switch defaultChecked onClick={() => dispatch(setDarkMode())} />
-            {darkMode ? <NightsStayIcon /> : <LightModeIcon />}
+            {darkMode ? (
+              <NightsStayIcon />
+            ) : (
+              <LightModeIcon sx={{ color: "black" }} />
+            )}
           </Box>
 
           {user ? (
