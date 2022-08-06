@@ -109,7 +109,7 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="register">Parolamı Unuttum</Link>
+                <Link to="resetPassword">Parolamı Unuttum</Link>
               </Grid>
               <Grid item>
                 <Link to="register">Kayıt ol</Link>

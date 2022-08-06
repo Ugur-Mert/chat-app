@@ -10,6 +10,7 @@ import {
   sendEmailVerification,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import {
@@ -19,7 +20,6 @@ import {
   onSnapshot,
   query,
   orderBy,
-  limit,
 } from "firebase/firestore";
 
 import toast from "react-hot-toast";
@@ -152,6 +152,16 @@ export const sendMessage = async (data) => {
   try {
     const messages = await addDoc(collection(db, "messages"), data);
     return messages.id;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
+export const resetPassword = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast.success("Reset password e mail sent!");
+    return true;
   } catch (error) {
     toast.error(error.message);
   }
