@@ -45,7 +45,6 @@ export const Register = () => {
               marginTop: 8,
               display: "flex",
               flexDirection: "column",
-
               alignItems: "center",
               border: 1,
               padding: 3,
