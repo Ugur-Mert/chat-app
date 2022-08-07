@@ -163,7 +163,7 @@ export const resetPassword = async (email) => {
     toast.success("Reset password e mail sent!");
     return true;
   } catch (error) {
-    toast.error(error.message);
+    toast.error("Böyle bir email kayıtlı değildir.");
   }
 };
 

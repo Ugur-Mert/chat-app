@@ -18,7 +18,7 @@ export default function ChatPage() {
   const { messages } = useSelector((state) => state.messages);
   const { user } = useSelector((state) => state.auth);
 
-  // console.log(messages);
+  console.log(messages);
   // console.log(user);
 
   return (
@@ -55,6 +55,7 @@ export default function ChatPage() {
                   type: "text",
                   text: message.message,
                   dateString: `${message.hours}:${message.minutes}`,
+                  date: new Date(),
                 },
               ]}
             />

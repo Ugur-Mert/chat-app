@@ -127,7 +127,9 @@ export const Register = () => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link to="/">Zaten bir hesabın var mı ? Giriş yap</Link>
+                  <Link style={{ color: darkMode ? "wheat" : "black" }} to="/">
+                    Zaten bir hesabın var mı ? Giriş yap
+                  </Link>
                 </Grid>
               </Grid>
             </Box>

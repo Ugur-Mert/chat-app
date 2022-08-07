@@ -109,10 +109,20 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="resetPassword">Parolamı Unuttum</Link>
+                <Link
+                  style={{ color: darkMode ? "wheat" : "black" }}
+                  to="resetPassword"
+                >
+                  Parolamı Unuttum
+                </Link>
               </Grid>
               <Grid item>
-                <Link to="register">Kayıt ol</Link>
+                <Link
+                  style={{ color: darkMode ? "wheat" : "black" }}
+                  to="register"
+                >
+                  Kayıt ol
+                </Link>
               </Grid>
             </Grid>
           </Box>
