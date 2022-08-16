@@ -2,6 +2,7 @@ import React, { createRef } from "react";
 
 import "./chatPage.css";
 
+import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,9 +18,6 @@ const messageListReferance = createRef();
 export default function ChatPage() {
   const { messages } = useSelector((state) => state.messages);
   const { user } = useSelector((state) => state.auth);
-
-  console.log(messages);
-  // console.log(user);
 
   return (
     <React.Fragment>
@@ -61,6 +59,7 @@ export default function ChatPage() {
             />
           ))}
         </Box>
+
         <Box
           sx={{
             bgcolor: "#51557E",

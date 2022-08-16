@@ -20,6 +20,7 @@ import {
   onSnapshot,
   query,
   orderBy,
+  deleteDoc,
 } from "firebase/firestore";
 
 import toast from "react-hot-toast";
@@ -42,8 +43,6 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const auth = getAuth();
-
-console.log(auth);
 
 const provider = new GoogleAuthProvider();
 
