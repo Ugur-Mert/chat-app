@@ -2,14 +2,14 @@
 
    technologies:
 
-    react
-    react-redux
+    	  react
+    	  react-redux
 	  reduxjs/toolkit
 	  firebase	  
 	  react-chat-elements
 	  react-hot-toast	  
 	  react-router-dom    
-    mui/icons-material
+    	  mui/icons-material
 	  mui/material
 
 
